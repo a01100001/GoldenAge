@@ -132,20 +132,31 @@
   .pkg-cta:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);box-shadow:0 0 15px rgba(201,168,76,0.2);}
 
   /* WHY */
-  #why{background:var(--dark2);}
-  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-  .why-items{margin-top:40px;display:flex;flex-direction:column;gap:28px;}
-  .why-item{display:flex;gap:20px;align-items:flex-start;}
-  .why-icon{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+  #why{background:var(--dark2);position:relative;overflow:hidden;}
+  #why::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 100% 0%,rgba(201,168,76,0.04) 0%,transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(0,245,255,0.03) 0%,transparent 55%);}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;}
+  .why-items{margin-top:40px;display:flex;flex-direction:column;gap:20px;}
+  .why-item{display:flex;gap:20px;align-items:flex-start;padding:18px 20px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;background:rgba(255,255,255,0.015);transition:all 0.3s;}
+  .why-item:hover{border-color:rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);transform:translateX(4px);}
+  .why-icon{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 0 12px rgba(201,168,76,0.1);}
   .why-item h4{font-size:0.85rem;font-weight:700;letter-spacing:0.06em;margin-bottom:6px;color:#fff;text-transform:uppercase;font-family:'Orbitron',monospace;}
   .why-item p{font-size:0.88rem;line-height:1.65;color:var(--dim);}
-  .why-visual{background:var(--dark3);border:1px solid rgba(201,168,76,0.1);padding:36px;border-radius:4px;position:sticky;top:100px;}
+  .why-visual{background:var(--dark3);border:1px solid rgba(201,168,76,0.15);padding:36px;border-radius:4px;position:sticky;top:100px;box-shadow:0 0 40px rgba(201,168,76,0.05);}
   .why-visual h3{font-size:0.85rem;font-weight:700;letter-spacing:0.1em;margin-bottom:28px;color:var(--gold);text-transform:uppercase;}
   .metric-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
   .metric-label{flex:1;font-size:0.85rem;color:var(--dim);}
   .metric-bar{flex:2;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
   .metric-fill{height:100%;border-radius:2px;width:0%;transition:width 1.2s ease;}
   .metric-pct{font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--gold);width:36px;text-align:right;}
+  /* CERTS & PARTNERS */
+  .cert-strip{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;}
+  .cert-badge{font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;padding:5px 12px;border-radius:2px;border:1px solid;text-transform:uppercase;}
+  .cert-gold{color:var(--gold);border-color:rgba(201,168,76,0.35);background:rgba(201,168,76,0.07);}
+  .cert-cyan{color:var(--cyan);border-color:rgba(0,245,255,0.25);background:rgba(0,245,255,0.05);}
+  .partner-block{margin-top:28px;padding:20px;border:1px solid rgba(0,245,255,0.08);border-radius:4px;background:rgba(0,245,255,0.02);}
+  .partner-block-title{font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--cyan);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:12px;opacity:0.7;}
+  .partner-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .partner-tag{font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:4px 10px;border-radius:2px;letter-spacing:0.08em;}
 
   /* CONTACT */
   #contact{background:var(--dark);}
@@ -408,25 +419,50 @@
     <div>
       <div class="reveal">
         <div class="section-tag" data-en="Why GoldenAge" data-tr="Neden GoldenAge">Why GoldenAge</div>
-        <h2 class="section-title" data-en="Security That Doesn't Break the Bank" data-tr="Bütçeyi Zorlamayan Güvenlik">Security That Doesn't Break the Bank</h2>
-        <p class="section-sub" data-en="Experienced teams and scalable solutions delivering professional cybersecurity for organizations of any size." data-tr="Deneyimli ekipler ve ölçeklenebilir çözümlerle her büyüklükteki organizasyon için profesyonel siber güvenlik.">Experienced teams and scalable solutions delivering professional cybersecurity for organizations of any size.</p>
+        <h2 class="section-title" data-en="Why Industry Leaders Choose GoldenAge" data-tr="Sektör Liderleri Neden GoldenAge'i Seçiyor">Why Industry Leaders Choose <span style="color:var(--gold)">GoldenAge</span></h2>
+        <p class="section-sub" data-en="Certified experts, proven methodologies and local technology partnerships — delivering enterprise-grade security for organizations of any size." data-tr="Sertifikalı uzmanlar, kanıtlanmış metodolojiler ve yerli teknoloji iş birlikleri — her büyüklükteki organizasyon için kurumsal düzeyde güvenlik.">Certified experts, proven methodologies and local technology partnerships — delivering enterprise-grade security for organizations of any size.</p>
       </div>
       <div class="why-items reveal">
-        <div class="why-item"><div class="why-icon">🎯</div><div>
+        <div class="why-item"><div class="why-icon" style="background:rgba(0,245,255,0.1);border-color:rgba(0,245,255,0.25);box-shadow:0 0 12px rgba(0,245,255,0.1)">🎯</div><div>
           <h4 data-en="Proven Methodology" data-tr="Kanıtlanmış Metodoloji">Proven Methodology</h4>
           <p data-en="OWASP, PTES, CIS Benchmark and MITRE ATT&CK frameworks — internationally standardized." data-tr="OWASP, PTES, CIS Benchmark ve MITRE ATT&CK çerçeveleri — uluslararası standartlarda.">OWASP, PTES, CIS Benchmark and MITRE ATT&CK frameworks — internationally standardized.</p>
         </div></div>
-        <div class="why-item"><div class="why-icon">🔗</div><div>
+        <div class="why-item"><div class="why-icon" style="background:rgba(255,0,128,0.08);border-color:rgba(255,0,128,0.2);box-shadow:0 0 12px rgba(255,0,128,0.1)">🔗</div><div>
           <h4 data-en="Integrated Ecosystem" data-tr="Entegre Ekosistem">Integrated Ecosystem</h4>
           <p data-en="Honeypot IOCs auto-feed CTIA. Pentest findings become a Hardening roadmap. Everything connects." data-tr="Honeypot IOC'ları otomatik CTIA'ya beslenir. Pentest bulguları sağlamlaştırma planına dönüşür.">Honeypot IOCs auto-feed CTIA. Pentest findings become a Hardening roadmap. Everything connects.</p>
         </div></div>
-        <div class="why-item"><div class="why-icon">📊</div><div>
+        <div class="why-item"><div class="why-icon" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);box-shadow:0 0 12px rgba(46,204,113,0.1)">📊</div><div>
           <h4 data-en="Transparent & Measurable" data-tr="Şeffaf & Ölçülebilir">Transparent & Measurable</h4>
           <p data-en="CVSS-scored reports, monthly SLA tracking and attack surface reduction metrics at every step." data-tr="CVSS skorlu raporlar, aylık SLA takibi ve her adımda saldırı yüzeyi azalma metrikleri.">CVSS-scored reports, monthly SLA tracking and attack surface reduction metrics at every step.</p>
         </div></div>
-        <div class="why-item"><div class="why-icon">⚡</div><div>
+        <div class="why-item"><div class="why-icon" style="background:rgba(230,126,34,0.08);border-color:rgba(230,126,34,0.2);box-shadow:0 0 12px rgba(230,126,34,0.1)">⚡</div><div>
           <h4 data-en="7/24 Monitoring & Instant Alerts" data-tr="7/24 İzleme & Anlık Alarm">7/24 Monitoring & Instant Alerts</h4>
           <p data-en="Any anomaly triggers instant SMS, email, Slack and Teams notifications. Zero downtime tolerance." data-tr="Her anomali SMS, e-posta, Slack ve Teams üzerinden anlık bildirim tetikler. Sıfır kesinti toleransı.">Any anomaly triggers instant SMS, email, Slack and Teams notifications. Zero downtime tolerance.</p>
+        </div></div>
+        <div class="why-item"><div class="why-icon">🏅</div><div>
+          <h4 data-en="Certified & Experienced Team" data-tr="Sertifikalı & Deneyimli Ekip">Certified & Experienced Team</h4>
+          <p data-en="Our consultants hold industry-leading certifications — CEH, CPent, CHFI, ECIH — backed by years of hands-on field experience across diverse sectors." data-tr="Danışmanlarımız CEH, CPent, CHFI ve ECIH gibi sektörün önde gelen sertifikalarına sahip; farklı sektörlerde yıllar içinde edinilen saha deneyimiyle desteklenmektedir.">Our consultants hold industry-leading certifications — CEH, CPent, CHFI, ECIH — backed by years of hands-on field experience across diverse sectors.</p>
+          <div class="cert-strip">
+            <span class="cert-badge cert-gold">CEH</span>
+            <span class="cert-badge cert-gold">CPent</span>
+            <span class="cert-badge cert-gold">CHFI</span>
+            <span class="cert-badge cert-cyan">ECIH</span>
+          </div>
+        </div></div>
+        <div class="why-item"><div class="why-icon">🤝</div><div>
+          <h4 data-en="Local Technology Partnerships" data-tr="Yerli Teknoloji İşbirlikleri">Local Technology Partnerships</h4>
+          <p data-en="We collaborate with leading domestic cybersecurity vendors and solution providers. Local expertise, local support — with global standards." data-tr="Önde gelen yerli siber güvenlik firmaları ve çözüm sağlayıcılarıyla iş birliği yapıyoruz. Yerinde uzmanlık, yerinde destek — global standartlarla.">We collaborate with leading domestic cybersecurity vendors and solution providers. Local expertise, local support — with global standards.</p>
+          <div class="partner-block">
+            <div class="partner-block-title" data-en="// Domestic Partner Ecosystem" data-tr="// Yerli Ortak Ekosistemi">// Domestic Partner Ecosystem</div>
+            <div class="partner-list">
+              <span class="partner-tag">BGYS / ISMS</span>
+              <span class="partner-tag">TSE Uyumlu</span>
+              <span class="partner-tag">KVKK</span>
+              <span class="partner-tag">BTK Kayıtlı</span>
+              <span class="partner-tag">Yerli SIEM</span>
+              <span class="partner-tag">Siber Vatan</span>
+            </div>
+          </div>
         </div></div>
       </div>
     </div>
@@ -452,7 +488,7 @@
       <div class="section-tag" data-en="Get in Touch" data-tr="İletişim">Get in Touch</div>
       <h2 class="section-title" data-en="Let's Discuss Your Security" data-tr="Güvenliğinizi Konuşalım">Let's Discuss Your Security</h2>
       <p style="font-size:0.95rem;line-height:1.7;color:var(--dim);margin-bottom:36px;" data-en="Fill out the form or reach out directly. Free initial consultation for your organization." data-tr="Formu doldurun ya da doğrudan ulaşın. Organizasyonunuz için ücretsiz ilk danışmanlık.">Fill out the form or reach out directly. Free initial consultation for your organization.</p>
-      <div class="contact-detail"><div class="contact-icon">📧</div><a href="mailto:info@goldenage-consultancy.com">info@goldenage-consultancy.com</a></div>
+      <div class="contact-detail"><div class="contact-icon">📧</div><a href="mailto:sales@goldenage-consultancy.com">sales@goldenage-consultancy.com</a></div>
       <div class="contact-detail"><div class="contact-icon">📞</div><a href="tel:+905063416511">+90 506 341 65 11</a></div>
       <div class="contact-detail"><div class="contact-icon">🌐</div><a href="https://goldenage-consultancy.com">goldenage-consultancy.com</a></div>
     </div>
@@ -500,7 +536,7 @@
   </ul>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── CUSTOM CURSOR ───
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
@@ -605,6 +641,19 @@ function animParticles(){
 }
 animParticles();
 
+
+// ─── TURKISH UPPERCASE i FIX ───
+function fixTurkishCase(){
+  if(currentLang!=='tr') return;
+  document.querySelectorAll('[data-tr]').forEach(el=>{
+    const style=window.getComputedStyle(el);
+    if(style.textTransform==='uppercase'){
+      const tr=el.getAttribute('data-tr');
+      if(tr) el.textContent=tr.toLocaleUpperCase('tr-TR');
+    }
+  });
+}
+
 // ─── LANGUAGE TOGGLE ───
 let currentLang='en';
 function toggleLang(){
@@ -631,6 +680,7 @@ function applyLang(){
     if(newText) line2.setAttribute('data-text',newText);
   }
   document.documentElement.lang=currentLang;
+  fixTurkishCase();
 }
 
 // ─── SCROLL REVEAL ───
@@ -660,14 +710,60 @@ document.querySelectorAll('.why-visual').forEach(el=>metricObs.observe(el));
 // ─── FORM ───
 function submitForm(){
   const btn=document.querySelector('.form-submit');
-  const msg=currentLang==='tr'?'Teşekkürler! En kısa sürede iletişime geçeceğiz.':'Thank you! We will be in touch shortly.';
-  btn.textContent=currentLang==='tr'?'✓ Gönderildi':'✓ Sent';
-  btn.style.background='linear-gradient(135deg,#00F5FF,#00C8D4)';
-  setTimeout(()=>{
-    btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
-    btn.style.background='';
-  },3000);
-  alert(msg);
+  const inputs=document.querySelectorAll('#contact input[type="text"]');
+  const name=inputs[0]?.value||'';
+  const company=inputs[1]?.value||'';
+  const email=document.querySelector('#contact input[type="email"]')?.value||'';
+  const service=document.querySelector('#contact select')?.value||'';
+  const message=document.querySelector('#contact textarea')?.value||'';
+
+  if(!name||!email){
+    alert(currentLang==='tr'?'Lütfen ad ve e-posta alanlarını doldurun.':'Please fill in your name and email.');
+    return;
+  }
+
+  btn.textContent=currentLang==='tr'?'Gönderiliyor...':'Sending...';
+  btn.disabled=true;
+
+  const formData=new FormData();
+  formData.append('name', name);
+  formData.append('company', company);
+  formData.append('email', email);
+  formData.append('service', service);
+  formData.append('message', message);
+
+  fetch('https://formspree.io/f/maqpowvv', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if(res.ok){
+      btn.textContent=currentLang==='tr'?'✓ Mesajınız İletildi!':'✓ Message Sent!';
+      btn.style.background='linear-gradient(135deg,#2ECC71,#27AE60)';
+      document.querySelector('#contact input[type="text"]').value='';
+      document.querySelectorAll('#contact input[type="text"]')[1].value='';
+      document.querySelector('#contact input[type="email"]').value='';
+      document.querySelector('#contact select').selectedIndex=0;
+      document.querySelector('#contact textarea').value='';
+      setTimeout(()=>{
+        btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
+        btn.style.background='';
+        btn.disabled=false;
+      },4000);
+    } else {
+      throw new Error('Network error');
+    }
+  })
+  .catch(()=>{
+    btn.textContent=currentLang==='tr'?'✗ Hata — Tekrar Deneyin':'✗ Error — Please Retry';
+    btn.style.background='linear-gradient(135deg,#E74C3C,#C0392B)';
+    btn.disabled=false;
+    setTimeout(()=>{
+      btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
+      btn.style.background='';
+    },3000);
+  });
 }
 </script>
 </body>
