@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Goldenage Consultancy</title>
+<title>GoldenAge Cybersecurity Consultancy</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════
@@ -312,13 +312,99 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
 .trail{position:fixed;pointer-events:none;z-index:9997;border-radius:50%;transform:translate(-50%,-50%);animation:trailFade 0.6s ease forwards;}
 @keyframes trailFade{0%{opacity:0.6;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-50%) scale(0.1);}}
 
+
+/* ══════════════ HAMBURGER ══════════════ */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:transparent;border:1px solid rgba(0,245,255,0.2);
+  border-radius:4px;padding:7px;cursor:pointer;flex-shrink:0;z-index:9500;}
+.hamburger span{display:block;height:1.5px;background:var(--cyan);border-radius:1px;
+  transition:all 0.3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* ══════════════ MOBILE OVERLAY NAV ══════════════ */
+.mob-nav{
+  position:fixed;inset:0;top:70px;z-index:8000;
+  background:rgba(3,6,8,0.97);backdrop-filter:blur(28px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0;opacity:0;pointer-events:none;transition:opacity 0.3s ease;
+}
+.mob-nav.open{opacity:1;pointer-events:all;}
+.mob-nav a{
+  font-family:'Orbitron',monospace;font-size:1rem;font-weight:600;
+  color:var(--dim);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;
+  padding:18px 0;border-bottom:1px solid rgba(0,245,255,0.06);width:72%;text-align:center;
+  transition:color 0.2s;
+}
+.mob-nav a:last-child{border-bottom:none;}
+.mob-nav a:hover,.mob-nav a:active{color:var(--cyan);}
+.mob-nav .mob-cta{
+  margin-top:24px;background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:#030608;padding:14px 40px;border-radius:3px;
+  font-family:'Orbitron',monospace;font-weight:700;font-size:0.75rem;
+  letter-spacing:0.1em;text-transform:uppercase;border:none;
+}
+
+/* ══════════════ BREAKPOINTS ══════════════ */
+@media(max-width:1060px){
+  .goldenx-grid{grid-template-columns:1fr;gap:48px;}
+  .goldenx-grid .goldenx-visual{display:none;}
+  .why-grid{grid-template-columns:1fr;gap:48px;}
+  .contact-grid{grid-template-columns:1fr;gap:48px;}
+}
+
 @media(max-width:900px){
-  .hero-stats,.goldenx-grid .goldenx-visual{display:none;}
-  .why-grid,.contact-grid,.goldenx-grid{grid-template-columns:1fr;gap:40px;}
   .nav-items{display:none;}
+  .hamburger{display:flex;}
+  .hero-stats{display:none;}
   .form-row{grid-template-columns:1fr;}
   body{cursor:auto;}
   #cursor,#cursor-ring{display:none;}
+  nav{padding:0 5%;height:64px;}
+  .mob-nav{top:64px;}
+  section{padding:72px 5%;}
+  .hero{padding:110px 5% 72px;}
+  .hero h1{font-size:clamp(2rem,8vw,3.5rem);}
+  .hero-desc{font-size:1rem;}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:12px;}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;}
+  .services-grid{grid-template-columns:1fr;}
+  .gx-modules{grid-template-columns:repeat(2,1fr);}
+  footer{flex-direction:column;text-align:center;gap:20px;}
+  .footer-links{justify-content:center;flex-wrap:wrap;gap:16px;}
+}
+
+@media(max-width:600px){
+  nav{height:58px;}
+  .mob-nav{top:58px;}
+  .nav-logo-text{font-size:0.75rem;}
+  .nav-logo img{width:40px;height:40px;}
+  section{padding:60px 4%;}
+  .hero{padding:90px 4% 60px;}
+  .hero h1{font-size:clamp(1.7rem,9vw,2.6rem);}
+  .section-title{font-size:clamp(1.4rem,6vw,2rem);}
+  .svc-card{padding:26px 18px;}
+  .pkg-card{padding:26px 18px;}
+  .contact-form{padding:22px 16px;}
+  .why-visual{position:static;}
+  .gx-modules{grid-template-columns:repeat(2,1fr);}
+  .cover-title{font-size:1.3rem;}
+  .cover-bar{width:150px;}
+  .hero-stats{
+    display:flex;position:relative;right:auto;top:auto;transform:none;
+    flex-direction:row;flex-wrap:wrap;gap:14px;margin-top:36px;justify-content:flex-start;
+  }
+  .stat-item{text-align:left;border-right:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:6px;min-width:72px;}
+  .stat-num{font-size:1.5rem;}
+  .pkg-section-label{font-size:0.55rem;letter-spacing:0.1em;}
+}
+
+/* Touch devices — kill cursor, enable native pointer */
+@media(hover:none),(pointer:coarse){
+  body{cursor:auto;}
+  #cursor,#cursor-ring,.trail{display:none !important;}
+  a,button,.pkg-cta,.btn-primary,.btn-secondary,.nav-cta,.lang-btn,.form-submit{cursor:pointer;}
 }
 </style>
 </head>
@@ -363,31 +449,44 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
   <div class="nav-actions">
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">TR</button>
     <a href="#contact" class="nav-cta" data-en="Get a Quote" data-tr="Teklif Al">Get a Quote</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobNav()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE OVERLAY NAV -->
+<div class="mob-nav" id="mobNav">
+  <a href="#services"  onclick="closeMobNav()" data-en="Services"  data-tr="Hizmetler">Services</a>
+  <a href="#goldenx-teaser" onclick="closeMobNav()" data-en="GoldenX"  data-tr="GoldenX">GoldenX</a>
+  <a href="#packages"  onclick="closeMobNav()" data-en="Packages"  data-tr="Paketler">Packages</a>
+  <a href="#why"       onclick="closeMobNav()" data-en="Why Us"    data-tr="Neden Biz">Why Us</a>
+  <a href="#contact"   onclick="closeMobNav()" data-en="Contact"   data-tr="İletişim">Contact</a>
+  <a href="#contact"   onclick="closeMobNav()" class="mob-cta" data-en="Get a Quote →" data-tr="Teklif Al →">Get a Quote →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div><div class="hero-glow2"></div><div class="hero-glow3"></div>
   <div class="hero-content">
-    <div class="hero-badge" data-en="Advanced Cybersecurity" data-tr="Gelişmiş Siber Güvenlik">Advanced Cybersecurity</div>
+    <div class="hero-badge" data-en="Next-Generation Cybersecurity" data-tr="Yeni Nesil Siber Güvenlik">Next-Generation Cybersecurity</div>
     <h1>
       <span class="line1" data-en="Defend Your" data-tr="Dijital Varlıklarınızı">Defend Your</span><br>
       <span class="line2" data-text="Digital Assets" data-en="Digital Assets" data-tr="Koruyun">Digital Assets</span>
     </h1>
-    <div class="hero-sub" id="heroSub" data-en="// ENTERPRISE-GRADE SECURITY SOLUTIONS" data-tr="// KURUMSAL DÜZEYDE GÜVENLİK ÇÖZÜMLERİ">// ENTERPRISE-GRADE SECURITY SOLUTIONS</div>
-    <p class="hero-desc" data-en="Penetration testing, Red Team operations, XDR, Cyber Threat Intelligence, Stress Testing, DevSecOps scanning and fully Managed Detection &amp; Response — the complete GoldenAge ecosystem for organizations that cannot afford compromise." data-tr="Sızma testi, Red Team operasyonları, XDR, Siber Tehdit İstihbaratı, Stres Testi, DevSecOps taraması ve tam Yönetilen Tespit &amp; Yanıt — uzlaşmayı göze alamayan kuruluşlar için eksiksiz GoldenAge ekosistemi.">Penetration testing, Red Team operations, XDR, Cyber Threat Intelligence, Stress Testing, DevSecOps scanning and fully Managed Detection &amp; Response — the complete GoldenAge ecosystem for organizations that cannot afford compromise.</p>
+    <div class="hero-sub" id="heroSub" data-en="// ENTERPRISE-GRADE OFFENSIVE &amp; DEFENSIVE SECURITY" data-tr="// KURUMSAL DÜZEYDE OFANSİF &amp; DEFANSİF GÜVENLİK">// ENTERPRISE-GRADE OFFENSIVE &amp; DEFENSIVE SECURITY</div>
+    <p class="hero-desc" data-en="Penetration testing, Advanced Red Team &amp; APT simulation, Cloud Security posture management across AWS/Azure/GCP, Container audit &amp; AI-powered source code analysis, XDR, Cyber Threat Intelligence and fully Managed Detection &amp; Response — the complete GoldenAge security ecosystem." data-tr="Sızma testi, Red Team operasyonları, XDR, Siber Tehdit İstihbaratı, Stres Testi, DevSecOps taraması ve tam Yönetilen Tespit &amp; Yanıt — uzlaşmayı göze alamayan kuruluşlar için eksiksiz GoldenAge ekosistemi.">Penetration testing, Advanced Red Team &amp; APT simulation, Cloud Security posture management across AWS/Azure/GCP, Container audit &amp; AI-powered source code analysis, XDR, Cyber Threat Intelligence and fully Managed Detection &amp; Response — the complete GoldenAge security ecosystem.</p>
     <div class="hero-actions">
       <a href="#packages" class="btn-primary" data-en="Explore Packages →" data-tr="Paketleri İncele →">Explore Packages →</a>
       <a href="#goldenx" class="btn-secondary" data-en="Discover GoldenX" data-tr="GoldenX'i Keşfet">Discover GoldenX</a>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label" data-en="Core Services" data-tr="Temel Hizmet">Core Services</div></div>
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label" data-en="Core Services" data-tr="Temel Hizmet">Core Services</div></div>
     <div class="stat-item"><div class="stat-num">5</div><div class="stat-label" data-en="MDR Tiers" data-tr="MDR Kademesi">MDR Tiers</div></div>
     <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label" data-en="SOC Coverage" data-tr="SOC Kapsamı">SOC Coverage</div></div>
-    <div class="stat-item"><div class="stat-num">v2.1</div><div class="stat-label" data-en="GoldenX" data-tr="GoldenX">GoldenX</div></div>
+    <div class="stat-item"><div class="stat-num">v3.0</div><div class="stat-label" data-en="GoldenX" data-tr="GoldenX">GoldenX</div></div>
   </div>
   <div class="scroll-indicator">
     <span data-en="SCROLL" data-tr="KAYDIRIN">SCROLL</span>
@@ -401,9 +500,9 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
 <section id="services" style="background:var(--dark2);position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 0% 50%,rgba(0,245,255,0.03) 0%,transparent 60%);"></div>
   <div class="services-header reveal" style="text-align:center;margin-bottom:70px;position:relative;">
-    <div class="section-tag" data-en="Our Capabilities" data-tr="Yeteneklerimiz">Our Capabilities</div>
-    <h2 class="section-title" data-en="Eight Core Services" data-tr="Sekiz Temel Hizmet">Eight Core Services</h2>
-    <p class="section-sub" style="margin:0 auto;" data-en="Advisory · Offensive · Deception · Intelligence · XDR · Stress · DevSecOps · MDR — the complete GoldenAge security ecosystem." data-tr="Danışmanlık · Ofansif · Deception · İstihbarat · XDR · Stres · DevSecOps · MDR — eksiksiz GoldenAge güvenlik ekosistemi.">Advisory · Offensive · Deception · Intelligence · XDR · Stress · DevSecOps · MDR — the complete GoldenAge security ecosystem.</p>
+    <div class="section-tag" data-en="Platform Capabilities" data-tr="Platform Yetenekleri">Platform Capabilities</div>
+    <h2 class="section-title" data-en="Ten Core Disciplines" data-tr="On Temel Disiplin">Ten Core Disciplines</h2>
+    <p class="section-sub" style="margin:0 auto;" data-en="Advisory · Offensive · Deception · Intelligence · XDR · Stress · DevSecOps · MDR — the complete GoldenAge security ecosystem." data-tr="Danışmanlık · Ofansif · Deception · İstihbarat · XDR · Stres · DevSecOps · MDR — eksiksiz GoldenAge güvenlik ekosistemi.">Advisory · Offensive · Red Team · Cloud Security · Container Audit · Source Code Analysis · XDR · Intelligence · Stress · MDR — the complete GoldenAge security ecosystem.</p>
   </div>
   <div class="services-grid" style="position:relative;">
     <div class="svc-card">
@@ -420,9 +519,9 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
     </div>
     <div class="svc-card">
       <div class="svc-num">03</div><div class="svc-icon" style="border-color:rgba(255,51,102,0.2);background:rgba(255,51,102,0.06);">⚔️</div>
-      <h3 data-en="Advanced Red Team &amp; APT Simulation" data-tr="Gelişmiş Red Team & APT Simülasyonu">Advanced Red Team &amp; APT Simulation</h3>
-      <p data-en="Full-spectrum adversary simulation — C2 deployment, AD attack chains, physical &amp; social engineering. MITRE ATT&CK mapped. Purple Team debrief." data-tr="Tam spektrum rakip simülasyonu — C2, AD saldırı zincirleri, fiziksel & sosyal mühendislik. MITRE ATT&CK eşleştirilmiş.">Full-spectrum adversary simulation. C2, AD attack chains, physical &amp; social engineering vectors. MITRE ATT&CK mapped.</p>
-      <div class="svc-tags"><span class="svc-tag">MITRE ATT&CK</span><span class="svc-tag">C2</span><span class="svc-tag">AD Attacks</span><span class="svc-tag">Purple Team</span></div>
+      <h3 data-en="Advanced Red Team, APT Simulation &amp; Endpoint Defense Evasion" data-tr="Gelişmiş Red Team, APT Simülasyonu &amp; Uç Nokta Savunma Atlatma">Advanced Red Team, APT Simulation &amp; Endpoint Defense Evasion</h3>
+      <p data-en="Full-spectrum adversary simulation encompassing C2 framework deployment, multi-stage AD attack chains, physical access testing, and social engineering. Includes adaptive payload obfuscation and binary entropy manipulation to benchmark EDR/AV detection efficacy. MITRE ATT&CK mapped. Purple Team debrief." data-tr="Tam spektrum rakip simülasyonu — C2, AD saldırı zincirleri, fiziksel & sosyal mühendislik. MITRE ATT&CK eşleştirilmiş.">Full-spectrum adversary simulation with C2 deployment, AD attack chains, and social engineering. Adaptive payload obfuscation &amp; binary entropy manipulation to benchmark EDR/AV detection efficacy. MITRE ATT&CK mapped.</p>
+      <div class="svc-tags"><span class="svc-tag">MITRE ATT&CK</span><span class="svc-tag">C2 Framework</span><span class="svc-tag">EDR Evasion</span><span class="svc-tag">AD Attacks</span><span class="svc-tag">Purple Team</span></div>
     </div>
     <div class="svc-card">
       <div class="svc-num">04</div><div class="svc-icon" style="border-color:rgba(255,107,0,0.2);background:rgba(255,107,0,0.06);">⚡</div>
@@ -444,14 +543,26 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
     </div>
     <div class="svc-card">
       <div class="svc-num">07</div><div class="svc-icon" style="border-color:rgba(46,204,113,0.2);background:rgba(46,204,113,0.06);">⚙️</div>
-      <h3 data-en="DevSecOps &amp; Code Security" data-tr="DevSecOps & Kod Güvenliği">DevSecOps &amp; Code Security</h3>
-      <p data-en="GitHub, GitLab, Bitbucket, Slack repository scanning. SAST/DAST, secrets detection, dependency CVE audit, IaC review, CI/CD pipeline security gates." data-tr="GitHub, GitLab, Bitbucket, Slack repo taraması. SAST/DAST, sır tespiti, bağımlılık CVE denetimi, CI/CD güvenlik.">GitHub/GitLab/Bitbucket/Slack repo scanning. SAST/DAST, secrets detection, dependency CVE audit, CI/CD gates.</p>
-      <div class="svc-tags"><span class="svc-tag">SAST/DAST</span><span class="svc-tag">GitHub</span><span class="svc-tag">Secrets</span><span class="svc-tag">IaC</span></div>
+      <h3 data-en="DevSecOps, Container Audit &amp; Source Code Analysis" data-tr="DevSecOps, Container Denetimi &amp; Kaynak Kod Analizi">DevSecOps, Container Audit &amp; Source Code Analysis</h3>
+      <p data-en="GitHub, GitLab, Bitbucket, Slack repository scanning. SAST/DAST, secrets detection, dependency CVE audit, IaC review, CI/CD pipeline security gates." data-tr="GitHub, GitLab, Bitbucket, Slack repo taraması. SAST/DAST, sır tespiti, bağımlılık CVE denetimi, CI/CD güvenlik.">Repository scanning across GitHub, GitLab, Bitbucket, and local paths. SAST/DAST pipelines with AI-assisted source code analysis and exploit chain mapping, secrets detection across full commit history, container image CVE auditing, and SBOM generation.</p>
+      <div class="svc-tags"><span class="svc-tag">SAST/DAST</span><span class="svc-tag">AI Code Analysis</span><span class="svc-tag">Container CVE</span><span class="svc-tag">SBOM</span><span class="svc-tag">Secrets</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">08</div><div class="svc-icon" style="border-color:rgba(0,180,255,0.2);background:rgba(0,180,255,0.06);">☁️</div>
+      <h3 data-en="Cloud Security Posture Management" data-tr="Bulut Güvenlik Durum Yönetimi">Cloud Security Posture Management</h3>
+      <p data-en="Comprehensive security assessment and continuous posture monitoring across AWS, Azure, and GCP. Covers IAM privilege escalation paths, misconfigured storage exposure, network perimeter analysis, serverless attack surface, and CIS Benchmark compliance verification." data-tr="AWS, Azure ve GCP genelinde kapsamlı güvenlik değerlendirmesi ve sürekli durum izleme.">Comprehensive assessment and continuous monitoring across AWS, Azure, and GCP. Covers IAM privilege escalation, misconfigured storage exposure, network perimeter analysis, and CIS Benchmark compliance verification.</p>
+      <div class="svc-tags"><span class="svc-tag">AWS</span><span class="svc-tag">Azure</span><span class="svc-tag">GCP</span><span class="svc-tag">CSPM</span><span class="svc-tag">CIS Benchmark</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">09</div><div class="svc-icon" style="border-color:rgba(46,204,113,0.2);background:rgba(46,204,113,0.06);">🍯</div>
+      <h3 data-en="Deception Technology &amp; Active Defense" data-tr="Deception Teknolojisi &amp; Aktif Savunma">Deception Technology &amp; Active Defense</h3>
+      <p data-en="Deployment of high-interaction honeypots, deception tokens, and canary credentials across production-parallel environments to reduce attacker dwell time. All deception telemetry auto-correlates into the CTIA intelligence pipeline for enriched threat actor attribution." data-tr="Yüksek etkileşimli honeypot, deception token ve canary credential dağıtımı. Tüm telemetri CTIA istihbarat pipeline'ına otomatik beslenir.">High-interaction honeypot and deception token deployment across production-parallel environments. Reduces attacker dwell time via precision early warning. All telemetry auto-correlates into the CTIA intelligence pipeline.</p>
+      <div class="svc-tags"><span class="svc-tag">Honeypot</span><span class="svc-tag">Canary Tokens</span><span class="svc-tag">Active Defense</span><span class="svc-tag">CTIA Feed</span></div>
     </div>
     <div class="svc-card" style="border-color:rgba(201,168,76,0.12);background:linear-gradient(180deg,rgba(201,168,76,0.03),var(--dark3));">
-      <div class="svc-num" style="color:var(--gold);">08</div><div class="svc-icon" style="border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.06);">🏆</div>
+      <div class="svc-num" style="color:var(--gold);">10</div><div class="svc-icon" style="border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.06);">🏆</div>
       <h3 data-en="MDR — Managed Detection &amp; Response" data-tr="MDR — Yönetilen Tespit & Yanıt">MDR — Managed Detection &amp; Response</h3>
-      <p data-en="XDR + CTIA + GoldenX + 24/7 SOC + periodic pentest combined into one continuous managed service. The complete GoldenAge ecosystem in a single subscription." data-tr="XDR + CTIA + GoldenX + 7/24 SOC + periyodik pentest tek bir sürekli yönetilen hizmette. Eksiksiz GoldenAge ekosistemi.">XDR + CTIA + GoldenX + 24/7 SOC + periodic pentest. The complete GoldenAge ecosystem, one subscription.</p>
+      <p data-en="XDR + CTIA + GoldenX + 24/7 SOC + periodic pentest combined into one continuous managed service. The complete GoldenAge ecosystem in a single subscription." data-tr="XDR + CTIA + GoldenX + 7/24 SOC + periyodik pentest tek bir sürekli yönetilen hizmette. Eksiksiz GoldenAge ekosistemi.">The complete GoldenAge ecosystem unified under a single managed service contract — XDR + CTIA + GoldenX automation + 24/7 SOC + periodic penetration testing + DevSecOps pipeline security. End-to-end security operations, one subscription.</p>
       <div class="svc-tags"><span class="svc-tag" style="color:var(--gold);background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.2);">Continuous</span><span class="svc-tag" style="color:var(--gold);background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.2);">24/7 SOC</span><span class="svc-tag" style="color:var(--gold);background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.2);">Full Stack</span></div>
     </div>
   </div>
@@ -469,24 +580,26 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
       <!-- top badge row -->
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <div style="width:48px;height:48px;background:#00FF64;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:#030608;box-shadow:0 0 30px rgba(0,255,100,0.5);">GX</div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:rgba(0,255,100,0.7);letter-spacing:0.2em;text-transform:uppercase;">New · v2.1 · SECPORTAL</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:rgba(0,255,100,0.7);letter-spacing:0.2em;text-transform:uppercase;">New · v3.0 · SECPORTAL</div>
       </div>
 
       <div class="section-tag" style="color:#00FF64;" data-en="Proprietary Technology" data-tr="Tescilli Teknoloji">Proprietary Technology</div>
       <h2 class="section-title" style="line-height:1.05;">
         <span style="color:#00FF64;">GoldenX</span><br>
-        <span style="font-size:0.6em;color:var(--text);" data-en="Automated Pentest Framework" data-tr="Otomatik Pentest Çerçevesi">Automated Pentest Framework</span>
+        <span style="font-size:0.6em;color:var(--text);" data-en="Automated Security Operations Platform" data-tr="Otomatik Güvenlik Operasyonları Platformu">Automated Security Operations Platform</span>
       </h2>
-      <p class="section-sub" data-en="GoldenAge's proprietary enterprise-grade penetration testing framework. Orchestrates 18+ industry tools through a unified AI-powered engine with real-time web GUI, CVSS v3.1 scoring and compliance-ready PDF reports." data-tr="GoldenAge'in tescilli kurumsal düzeyde sızma testi çerçevesi. 18+ endüstri aracını birleşik yapay zeka destekli motor üzerinden yönetir.">GoldenAge's proprietary enterprise-grade penetration testing framework. Orchestrates 18+ industry tools through a unified AI-powered engine with real-time web GUI, CVSS v3.1 scoring and compliance-ready PDF reports.</p>
+      <p class="section-sub" data-en="GoldenAge's proprietary enterprise-grade security automation platform. Orchestrates 22+ industry tools through a unified AI-powered engine — featuring Container Audit, AI-driven source code analysis, cloud security posture management across AWS/Azure/GCP, and endpoint defense evasion simulation for EDR/AV efficacy benchmarking." data-tr="GoldenAge'in tescilli kurumsal düzeyde sızma testi çerçevesi. 18+ endüstri aracını birleşik yapay zeka destekli motor üzerinden yönetir.">GoldenAge's proprietary enterprise-grade security automation platform. Orchestrates 22+ industry tools through a unified AI-powered engine — featuring Container Audit, AI-driven source code analysis, cloud security posture management across AWS/Azure/GCP, and endpoint defense evasion simulation for EDR/AV efficacy benchmarking.</p>
 
       <!-- feature pills -->
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;">
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#00FF64;background:rgba(0,255,100,0.07);border:1px solid rgba(0,255,100,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">AI Analysis</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:var(--cyan);background:rgba(0,245,255,0.07);border:1px solid rgba(0,245,255,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Cloud Workers</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#00FF64;background:rgba(0,255,100,0.07);border:1px solid rgba(0,255,100,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">AI Code Analysis</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:var(--cyan);background:rgba(0,245,255,0.07);border:1px solid rgba(0,245,255,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Container Audit</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#00BFFF;background:rgba(0,191,255,0.07);border:1px solid rgba(0,191,255,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Cloud Security</span>
         <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#FF6B00;background:rgba(255,107,0,0.07);border:1px solid rgba(255,107,0,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Stress Engine</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:var(--gold);background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">VID Intelligence</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#FF3366;background:rgba(255,51,102,0.07);border:1px solid rgba(255,51,102,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Vuln Engine</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#00FF64;background:rgba(0,255,100,0.07);border:1px solid rgba(0,255,100,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Scan Rules</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:var(--gold);background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Repo Scan</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#FF3366;background:rgba(255,51,102,0.07);border:1px solid rgba(255,51,102,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">EDR Evasion Lab</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#9B59B6;background:rgba(155,89,182,0.07);border:1px solid rgba(155,89,182,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">VID Intelligence</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#00FF64;background:rgba(0,255,100,0.07);border:1px solid rgba(0,255,100,0.2);padding:4px 12px;border-radius:2px;letter-spacing:0.1em;">Cloud Workers</span>
       </div>
 
       <!-- compliance row -->
@@ -513,21 +626,23 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
           <div style="width:10px;height:10px;border-radius:50%;background:#FF5F57;"></div>
           <div style="width:10px;height:10px;border-radius:50%;background:#FFBD2E;"></div>
           <div style="width:10px;height:10px;border-radius:50%;background:#28C940;"></div>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--dim);letter-spacing:0.15em;margin-left:8px;">goldenX v2.1 · SECPORTAL</span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--dim);letter-spacing:0.15em;margin-left:8px;">goldenX v3.0 · SECPORTAL</span>
           <span style="margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#00FF64;background:rgba(0,255,100,0.1);border:1px solid rgba(0,255,100,0.2);padding:2px 8px;border-radius:2px;animation:termBlink 2s ease-in-out infinite;">● ACTIVE</span>
         </div>
         <!-- terminal body -->
         <div style="padding:24px;font-family:'Share Tech Mono',monospace;font-size:0.68rem;line-height:1.9;min-height:320px;">
           <div><span style="color:#00FF64;">root@goldenX</span><span style="color:var(--dim);">:~$</span> <span style="color:var(--cyan);">python3 scanner.py --target &lt;client.com&gt;</span></div>
-          <div style="color:rgba(0,255,100,0.5);padding-left:16px;">◈  GoldenX v3.0.1 — GoldenAge Consultancy</div>
-          <div style="color:#28C940;padding-left:16px;">✓  Tool verification passed (18/18)</div>
-          <div style="color:#28C940;padding-left:16px;">✓  AI Analysis module loaded (OpenAI)</div>
-          <div style="color:#28C940;padding-left:16px;">✓  Cloud Manager initialized (AWS/Azure)</div>
-          <div style="color:#FFBD2E;padding-left:16px;">▸  Pipeline: L1 Discovery → L2 Vuln → L3 Exploit</div>
-          <div style="color:rgba(0,245,255,0.6);padding-left:16px;">[NMAP]  Port scan — 3 open, 2 filtered</div>
-          <div style="color:rgba(0,245,255,0.6);padding-left:16px;">[SQLi]  47 endpoints tested — 2 injectable</div>
-          <div style="color:rgba(0,245,255,0.6);padding-left:16px;">[XSS]   182 probes — 1 reflected XSS found</div>
-          <div style="color:#FF3366;padding-left:16px;font-weight:700;">[CRIT]  CVE-2024-3400 · CVSS 10.0 · 0day active</div>
+          <div style="color:rgba(0,255,100,0.5);padding-left:16px;">◈  GoldenX v3.0 — GoldenAge Cybersecurity</div>
+          <div style="color:#28C940;padding-left:16px;">✓  Tool verification passed (22/22)</div>
+          <div style="color:#28C940;padding-left:16px;">✓  AI Analysis module loaded (multi-model)</div>
+          <div style="color:#28C940;padding-left:16px;">✓  Cloud Manager initialized (AWS / Azure / GCP)</div>
+          <div style="color:#FFBD2E;padding-left:16px;">✓  Container Audit engine ready (Trivy + SBOM)
+          <div style="color:#FFBD2E;padding-left:16px;">▸  Pipeline: L1 Discovery → L2 Vuln → L3 Exploit → L4 Cloud</div>
+          <div style="color:rgba(0,245,255,0.6);padding-left:16px;">[NMAP]    Port scan — 3 open, 2 filtered</div>
+          <div style="color:rgba(0,245,255,0.6);padding-left:16px;">[REPO]    Secrets found in 2 commits (git history)</div>
+          <div style="color:rgba(0,245,255,0.6);padding-left:16px;">[AUDIT]   CVE-2024-8932 · CVSS 9.8 · container:latest</div>
+          <div style="color:#FF3366;padding-left:16px;font-weight:700;">[CLOUD]   IAM privilege escalation path · AWS
+          <div style="color:#FF3366;padding-left:16px;font-weight:700;">[CRIT]    CVE-2024-3400 · CVSS 10.0 · 0day active</div>
           <div style="color:#28C940;padding-left:16px;">✓  AI enrichment — remediation generated</div>
           <div style="color:#28C940;padding-left:16px;">✓  Report: report_&lt;client&gt;.pdf — exported</div>
           <div><span style="color:#00FF64;">root@goldenX</span><span style="color:var(--dim);">:~$</span> <span style="display:inline-block;width:8px;height:14px;background:var(--cyan);animation:cursorBlink 1s step-end infinite;vertical-align:middle;"></span></div>
@@ -537,11 +652,11 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
       <!-- stat row below terminal -->
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px;">
         <div style="background:var(--dark2);border:1px solid rgba(0,255,100,0.06);padding:16px;text-align:center;">
-          <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:#00FF64;text-shadow:0 0 15px rgba(0,255,100,0.5);">12+</div>
+          <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:#00FF64;text-shadow:0 0 15px rgba(0,255,100,0.5);">22+</div>
           <div style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--dim);letter-spacing:0.1em;margin-top:4px;">Modules</div>
         </div>
         <div style="background:var(--dark2);border:1px solid rgba(0,245,255,0.06);padding:16px;text-align:center;">
-          <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--cyan);text-shadow:0 0 15px rgba(0,245,255,0.5);">1594</div>
+          <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--cyan);text-shadow:0 0 15px rgba(0,245,255,0.5);">2,400+</div>
           <div style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--dim);letter-spacing:0.1em;margin-top:4px;">CVE Database</div>
         </div>
         <div style="background:var(--dark2);border:1px solid rgba(255,107,0,0.06);padding:16px;text-align:center;">
@@ -549,8 +664,8 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
           <div style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--dim);letter-spacing:0.1em;margin-top:4px;">Peak RPS</div>
         </div>
         <div style="background:var(--dark2);border:1px solid rgba(201,168,76,0.06);padding:16px;text-align:center;">
-          <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);text-shadow:0 0 15px rgba(201,168,76,0.5);">7</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--dim);letter-spacing:0.1em;margin-top:4px;">Frameworks</div>
+          <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);text-shadow:0 0 15px rgba(201,168,76,0.5);">3</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--dim);letter-spacing:0.1em;margin-top:4px;">Cloud Providers</div>
         </div>
       </div>
     </div>
@@ -561,8 +676,8 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
 <section id="packages" style="background:var(--dark2);">
   <div class="pkg-header reveal" style="text-align:center;margin-bottom:70px;">
     <div class="section-tag" data-en="Service Portfolio" data-tr="Hizmet Portföyü">Service Portfolio</div>
-    <h2 class="section-title" data-en="Five Pillars. One Ecosystem." data-tr="Beş Temel. Tek Ekosistem.">Five Pillars. One Ecosystem.</h2>
-    <p class="section-sub" style="margin:0 auto;" data-en="From one-time advisory to continuous managed defense — every layer of your security posture, covered. All priced on request." data-tr="Tek seferlik danışmanlıktan sürekli yönetilen savunmaya — güvenlik duruşunuzun her katmanı, kapsanmış. Tüm fiyatlar talep üzerine.">From one-time advisory to continuous managed defense — every layer of your security posture, covered. All priced on request.</p>
+    <h2 class="section-title" data-en="Seven Pillars. One Ecosystem." data-tr="Yedi Temel. Tek Ekosistem.">Seven Pillars. One Ecosystem.</h2>
+    <p class="section-sub" style="margin:0 auto;" data-en="From one-time advisory to continuous managed defense — every layer of your security posture, covered. All priced on request." data-tr="Tek seferlik danışmanlıktan sürekli yönetilen savunmaya — güvenlik duruşunuzun her katmanı, kapsanmış. Tüm fiyatlar talep üzerine.">From one-time advisory to continuous managed defense — every layer of your security posture addressed, from cloud infrastructure and container registries to source code repositories. All engagements priced on request.</p>
   </div>
 
   <!-- ═══════════════════════════════════════════
@@ -618,7 +733,7 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
   <!-- ═══════════════════════════════════════════
        PILLAR 2 — OFFENSIVE SECURITY
   ═══════════════════════════════════════════ -->
-  <div class="pkg-section-label" data-en="// 02  OFFENSIVE SECURITY — Pentest & Red Team" data-tr="// 02  OFANSİF GÜVENLİK — Pentest & Red Team">// 02  OFFENSIVE SECURITY — Pentest &amp; Red Team</div>
+  <div class="pkg-section-label" data-en="// 02  OFFENSIVE SECURITY — Pentest & Red Team" data-tr="// 02  OFANSİF GÜVENLİK — Pentest & Red Team">// 02  OFFENSIVE SECURITY — Pentest, Red Team &amp; Endpoint Evasion</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-bottom:4px;">
 
     <div class="pkg-card reveal">
@@ -639,14 +754,15 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
     <div class="pkg-card reveal" style="border-color:rgba(255,51,102,0.15);background:linear-gradient(180deg,rgba(255,51,102,0.03),var(--dark3));">
       <span style="position:absolute;top:0;right:0;background:linear-gradient(135deg,#FF3366,#c0154a);color:#fff;font-family:'Orbitron',monospace;font-size:0.48rem;font-weight:700;letter-spacing:0.1em;padding:4px 12px;">★ ADVANCED</span>
       <span class="pkg-tier" style="color:#FF3366;background:rgba(255,51,102,0.06);border:1px solid rgba(255,51,102,0.22);">RED TEAM · APT</span>
-      <h3 data-en="Advanced Red Team Operation" data-tr="Gelişmiş Red Team Operasyonu">Advanced Red Team Operation</h3>
-      <p class="pkg-sub" data-en="Full-spectrum adversary simulation · MITRE ATT&CK" data-tr="Tam spektrum rakip simülasyonu · MITRE ATT&CK">Full-spectrum adversary simulation · MITRE ATT&CK</p>
+      <h3 data-en="Advanced Red Team &amp; Endpoint Defense Evasion" data-tr="Gelişmiş Red Team &amp; Uç Nokta Savunma Atlatma">Advanced Red Team &amp; Endpoint Defense Evasion</h3>
+      <p class="pkg-sub" data-en="Full-spectrum adversary simulation · MITRE ATT&CK · EDR/AV benchmarking" data-tr="Tam spektrum rakip simülasyonu · MITRE ATT&CK · EDR/AV kıyaslaması">Full-spectrum adversary simulation · MITRE ATT&CK · EDR/AV benchmarking</p>
       <ul class="pkg-items">
         <li data-en="APT simulation — multi-stage kill chain" data-tr="APT simülasyonu — çok aşamalı kill chain">APT simulation — multi-stage kill chain</li>
         <li data-en="Physical & social engineering vectors" data-tr="Fiziksel & sosyal mühendislik vektörleri">Physical &amp; social engineering vectors</li>
         <li data-en="C2 framework deployment & lateral movement" data-tr="C2 çerçeve kurulumu & yanal hareket">C2 framework deployment &amp; lateral movement</li>
         <li data-en="Active Directory attack chains (Kerberoasting, DCSync)" data-tr="Active Directory saldırı zincirleri (Kerberoasting, DCSync)">Active Directory attack chains</li>
-        <li data-en="Blue team detection gap analysis" data-tr="Blue team tespit boşluğu analizi">Blue team detection gap analysis</li>
+        <li data-en="Adaptive payload obfuscation &amp; binary entropy manipulation to benchmark EDR/AV detection efficacy" data-tr="EDR/AV tespit etkinliğini kıyaslamak için adaptif payload obfuskasyonu &amp; ikili entropi manipülasyonu">Adaptive payload obfuscation &amp; binary entropy manipulation to benchmark EDR/AV detection efficacy</li>
+        <li data-en="Blue team detection gap analysis &amp; MITRE ATT&CK coverage mapping" data-tr="Blue team tespit boşluğu analizi &amp; MITRE ATT&CK kapsam haritalama">Blue team detection gap analysis &amp; MITRE ATT&CK coverage mapping</li>
         <li data-en="MITRE ATT&CK mapped executive report" data-tr="MITRE ATT&CK eşleştirilmiş yönetici raporu">MITRE ATT&CK mapped executive report</li>
         <li data-en="Purple Team debrief session" data-tr="Purple Team değerlendirme oturumu">Purple Team debrief session</li>
       </ul>
@@ -770,6 +886,62 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
 
   </div>
 
+
+  <!-- ═══════════════════════════════════════════
+       PILLAR 04-B — CLOUD SECURITY
+  ═══════════════════════════════════════════ -->
+  <div class="pkg-section-label" data-en="// 04  CLOUD SECURITY — AWS · Azure · GCP Posture, Audit &amp; Pentest" data-tr="// 04  BULUT GÜVENLİĞİ — AWS · Azure · GCP Durum, Denetim &amp; Pentest">// 04  CLOUD SECURITY — AWS · Azure · GCP Posture, Audit &amp; Pentest</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-bottom:4px;">
+
+    <div class="pkg-card reveal">
+      <span class="pkg-tier" style="color:#00BFFF;background:rgba(0,191,255,0.06);border:1px solid rgba(0,191,255,0.22);">CLOUD · ASSESSMENT</span>
+      <h3 data-en="Cloud Security Posture Assessment" data-tr="Bulut Güvenlik Durum Değerlendirmesi">Cloud Security Posture Assessment</h3>
+      <p class="pkg-sub" data-en="AWS · Azure · GCP · One-time deep-dive · CIS Benchmark" data-tr="AWS · Azure · GCP · Tek seferlik derin inceleme · CIS Benchmark">AWS · Azure · GCP · One-time deep-dive · CIS Benchmark</p>
+      <ul class="pkg-items">
+        <li data-en="IAM privilege escalation path analysis" data-tr="IAM ayrıcalık yükseltme yolu analizi">IAM privilege escalation path analysis</li>
+        <li data-en="Misconfigured storage bucket &amp; object exposure audit" data-tr="Yanlış yapılandırılmış bucket &amp; nesne maruziyeti denetimi">Misconfigured storage bucket &amp; object exposure audit</li>
+        <li data-en="Network security group &amp; firewall rule analysis" data-tr="Ağ güvenlik grubu &amp; güvenlik duvarı kural analizi">Network security group &amp; firewall rule analysis</li>
+        <li data-en="Serverless function attack surface review" data-tr="Sunucusuz fonksiyon saldırı yüzeyi incelemesi">Serverless function attack surface review</li>
+        <li data-en="CIS Benchmark compliance gap analysis" data-tr="CIS Benchmark uyumluluk boşluk analizi">CIS Benchmark compliance gap analysis</li>
+        <li data-en="Prioritized remediation roadmap with CVSS severity scoring" data-tr="CVSS ciddiyet skorlu önceliklendirilmiş iyileştirme yol haritası">Prioritized remediation roadmap with CVSS severity scoring</li>
+      </ul>
+      <a href="#contact" class="pkg-cta" style="border-color:rgba(0,191,255,0.35);color:#00BFFF;" data-en="Request Quote →" data-tr="Teklif Talep Et →">Request Quote →</a>
+    </div>
+
+    <div class="pkg-card reveal" style="border-color:rgba(0,191,255,0.15);background:linear-gradient(180deg,rgba(0,191,255,0.03),var(--dark3));">
+      <span style="position:absolute;top:0;right:0;background:linear-gradient(135deg,#00BFFF,#005580);color:#fff;font-family:'Orbitron',monospace;font-size:0.48rem;font-weight:700;letter-spacing:0.1em;padding:4px 12px;">★ ADVERSARIAL</span>
+      <span class="pkg-tier" style="color:#00BFFF;background:rgba(0,191,255,0.06);border:1px solid rgba(0,191,255,0.22);">CLOUD · PENTEST</span>
+      <h3 data-en="Cloud Infrastructure Penetration Test" data-tr="Bulut Altyapısı Sızma Testi">Cloud Infrastructure Penetration Test</h3>
+      <p class="pkg-sub" data-en="Adversarial cloud attack simulation · Privilege escalation · Data exfiltration paths" data-tr="Çapraz bulut saldırı simülasyonu · Ayrıcalık yükseltme · Veri sızdırma yolları">Adversarial cloud attack simulation · Privilege escalation · Data exfiltration paths</p>
+      <ul class="pkg-items">
+        <li data-en="Assumed-breach lateral movement simulation across cloud boundaries" data-tr="Bulut sınırları genelinde ihlal varsayımlı yanal hareket simülasyonu">Assumed-breach lateral movement simulation across cloud boundaries</li>
+        <li data-en="IAM role chaining &amp; privilege escalation exploitation" data-tr="IAM rol zincirleme &amp; ayrıcalık yükseltme istismarı">IAM role chaining &amp; privilege escalation exploitation</li>
+        <li data-en="Cross-account trust boundary assessment" data-tr="Çapraz hesap güven sınırı değerlendirmesi">Cross-account trust boundary assessment</li>
+        <li data-en="Metadata service (IMDS v1/v2) exploitation scenarios" data-tr="Metadata servisi (IMDS v1/v2) istismar senaryoları">Metadata service (IMDS v1/v2) exploitation scenarios</li>
+        <li data-en="Container orchestration (EKS/AKS/GKE) escape testing" data-tr="Container orkestrasyon (EKS/AKS/GKE) kaçış testi">Container orchestration (EKS/AKS/GKE) escape testing</li>
+        <li data-en="Data exfiltration path mapping &amp; detection coverage gap analysis" data-tr="Veri sızdırma yolu haritalama &amp; tespit kapsam boşluğu analizi">Data exfiltration path mapping &amp; detection coverage gap analysis</li>
+        <li data-en="CVSS v3.1-scored report + cloud hardening roadmap" data-tr="CVSS v3.1 skorlu rapor + bulut sağlamlaştırma yol haritası">CVSS v3.1-scored report + cloud hardening roadmap</li>
+      </ul>
+      <a href="#contact" class="pkg-cta" style="border-color:rgba(0,191,255,0.4);color:#00BFFF;" data-en="Request Quote →" data-tr="Teklif Talep Et →">Request Quote →</a>
+    </div>
+
+    <div class="pkg-card reveal">
+      <span class="pkg-tier" style="color:#00BFFF;background:rgba(0,191,255,0.06);border:1px solid rgba(0,191,255,0.22);">CLOUD · CONTINUOUS</span>
+      <h3 data-en="Continuous Cloud Posture Monitoring" data-tr="Sürekli Bulut Durum İzleme">Continuous Cloud Posture Monitoring</h3>
+      <p class="pkg-sub" data-en="Real-time misconfiguration detection · Drift alerts · Compliance scoring" data-tr="Gerçek zamanlı yanlış yapılandırma tespiti · Drift uyarıları · Uyumluluk skorlaması">Real-time misconfiguration detection · Drift alerts · Compliance scoring</p>
+      <ul class="pkg-items">
+        <li data-en="Continuous cloud asset inventory &amp; configuration change detection" data-tr="Sürekli bulut varlık envanteri &amp; yapılandırma değişiklik tespiti">Continuous cloud asset inventory &amp; configuration change detection</li>
+        <li data-en="Real-time configuration drift alerting &amp; auto-remediation workflows" data-tr="Gerçek zamanlı yapılandırma sapması uyarısı &amp; otomatik iyileştirme iş akışları">Real-time configuration drift alerting &amp; auto-remediation workflows</li>
+        <li data-en="Automated compliance scoring (CIS Benchmark / SOC 2 / ISO 27001)" data-tr="Otomatik uyumluluk skorlaması (CIS Benchmark / SOC 2 / ISO 27001)">Automated compliance scoring (CIS Benchmark / SOC 2 / ISO 27001)</li>
+        <li data-en="Identity &amp; access anomaly detection (ITDR)" data-tr="Kimlik &amp; erişim anomali tespiti (ITDR)">Identity &amp; access anomaly detection (ITDR)</li>
+        <li data-en="Monthly cloud posture &amp; compliance scorecard" data-tr="Aylık bulut durum &amp; uyumluluk puan kartı">Monthly cloud posture &amp; compliance scorecard</li>
+      </ul>
+      <div class="pkg-synergy" data-en="Integrates natively with XDR + CTIA — cloud misconfigurations trigger automated containment playbooks and threat intelligence correlation" data-tr="XDR + CTIA ile yerel entegrasyon — yanlış yapılandırmalar otomatik kontrol playbook'larını tetikler">Integrates with XDR + CTIA — misconfigurations trigger automated containment playbooks</div>
+      <a href="#contact" class="pkg-cta" style="border-color:rgba(0,191,255,0.35);color:#00BFFF;" data-en="Request Quote →" data-tr="Teklif Talep Et →">Request Quote →</a>
+    </div>
+
+  </div>
+
   <!-- ═══════════════════════════════════════════
        PILLAR 5 — MDR
   ═══════════════════════════════════════════ -->
@@ -841,12 +1013,12 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
   <!-- ═══════════════════════════════════════════
        DEVSECOPS STANDALONE
   ═══════════════════════════════════════════ -->
-  <div class="pkg-section-label" data-en="// 06  DEVSECOPS — Code &amp; Repository Security" data-tr="// 06  DEVSECOPS — Kod & Repository Güvenliği">// 06  DEVSECOPS — Code &amp; Repository Security</div>
+  <div class="pkg-section-label" data-en="// 06  DEVSECOPS — Code &amp; Repository Security" data-tr="// 06  DEVSECOPS — Kod & Repository Güvenliği">// 06  DEVSECOPS — Container Audit, Repository Scan &amp; Source Code Analysis</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;">
 
     <div class="pkg-card reveal">
-      <span class="pkg-tier" style="color:#2ECC71;background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.22);">DEVSECOPS · SCAN</span>
-      <h3 data-en="Repository Security Scan" data-tr="Repository Güvenlik Taraması">Repository Security Scan</h3>
+      <span class="pkg-tier" style="color:#2ECC71;background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.22);">DEVSECOPS · REPO SCAN</span>
+      <h3 data-en="Repository Security &amp; Source Code Scan" data-tr="Repository Güvenliği &amp; Kaynak Kod Taraması">Repository Security &amp; Source Code Scan</h3>
       <p class="pkg-sub" data-en="GitHub · GitLab · Bitbucket · Slack · One-time" data-tr="GitHub · GitLab · Bitbucket · Slack · Tek seferlik">GitHub · GitLab · Bitbucket · Slack · One-time</p>
       <ul class="pkg-items">
         <li data-en="SAST — static application security testing" data-tr="SAST — statik uygulama güvenlik testi">SAST — static application security testing</li>
@@ -855,6 +1027,21 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
         <li data-en="IaC misconfiguration review (Terraform/K8s)" data-tr="IaC yanlış yapılandırma incelemesi (Terraform/K8s)">IaC misconfiguration review</li>
         <li data-en="Container image vulnerability scan" data-tr="Container imaj zafiyet taraması">Container image vulnerability scan</li>
         <li data-en="Findings report with fix recommendations" data-tr="Düzeltme önerili bulgular raporu">Findings report with fix recommendations</li>
+      </ul>
+      <a href="#contact" class="pkg-cta" style="border-color:rgba(46,204,113,0.35);color:#2ECC71;" data-en="Request Quote →" data-tr="Teklif Talep Et →">Request Quote →</a>
+    </div>
+
+    <div class="pkg-card reveal">
+      <span class="pkg-tier" style="color:#2ECC71;background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.22);">DEVSECOPS · CONTAINER AUDIT</span>
+      <h3 data-en="Container Image Audit Module" data-tr="Container İmaj Denetim Modülü">Container Image Audit Module</h3>
+      <p class="pkg-sub" data-en="CVE · Secrets · Misconfig · SBOM · Trivy-powered" data-tr="CVE · Sır · Yanlış Yapılandırma · SBOM · Trivy destekli">CVE · Secrets · Misconfig · SBOM · Trivy-powered</p>
+      <ul class="pkg-items">
+        <li data-en="Container image CVE scan with CRITICAL/HIGH/MEDIUM severity triage" data-tr="KRİTİK/YÜKSEK/ORTA ciddiyet triajlı container imaj CVE taraması">Container image CVE scan with severity triage (CRITICAL/HIGH/MEDIUM)</li>
+        <li data-en="Embedded secrets &amp; credential exposure detection within image layers" data-tr="İmaj katmanlarında gömülü sır &amp; credential maruziyeti tespiti">Embedded secrets &amp; credential exposure within image layers</li>
+        <li data-en="Runtime misconfiguration analysis" data-tr="Runtime yanlış yapılandırma analizi">Runtime misconfiguration analysis</li>
+        <li data-en="Software Bill of Materials (SBOM) generation" data-tr="Yazılım Malzeme Listesi (SBOM) üretimi">Software Bill of Materials (SBOM) generation</li>
+        <li data-en="GitHub / GitLab / local registry &amp; local path support" data-tr="GitHub / GitLab / yerel kayıt &amp; yerel path desteği">GitHub / GitLab / local registry &amp; local path support</li>
+        <li data-en="Severity-filtered findings dashboard &amp; executive PDF report" data-tr="Ciddiyet filtreli bulgular panosu &amp; yönetici PDF raporu">Severity-filtered findings dashboard &amp; executive PDF report</li>
       </ul>
       <a href="#contact" class="pkg-cta" style="border-color:rgba(46,204,113,0.35);color:#2ECC71;" data-en="Request Quote →" data-tr="Teklif Talep Et →">Request Quote →</a>
     </div>
@@ -901,25 +1088,25 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
     <div>
       <div class="reveal">
         <div class="section-tag" data-en="Why GoldenAge" data-tr="Neden GoldenAge">Why GoldenAge</div>
-        <h2 class="section-title" data-en="Security That Doesn't Break the Bank" data-tr="Bütçeyi Zorlamayan Güvenlik">Security That Doesn't Break the Bank</h2>
-        <p class="section-sub" data-en="Experienced teams, scalable solutions and proprietary tooling — delivering professional cybersecurity for any organization." data-tr="Deneyimli ekipler, ölçeklenebilir çözümler ve tescilli araçlar — her organizasyon için profesyonel siber güvenlik.">Experienced teams, scalable solutions and proprietary tooling — delivering professional cybersecurity for any organization.</p>
+        <h2 class="section-title" data-en="Precision Security. Measurable Outcomes." data-tr="Hassas Güvenlik. Ölçülebilir Sonuçlar.">Precision Security. Measurable Outcomes.</h2>
+        <p class="section-sub" data-en="Experienced teams, scalable solutions and proprietary tooling — delivering professional cybersecurity for any organization." data-tr="Deneyimli ekipler, ölçeklenebilir çözümler ve tescilli araçlar — her organizasyon için profesyonel siber güvenlik.">Purpose-built tooling, industry-standard methodologies, and a closed-loop ecosystem that converts raw findings into hardened infrastructure — delivered by practitioners, not generalists.</p>
       </div>
       <div class="why-items reveal">
         <div class="why-item"><div class="why-icon">🎯</div><div>
-          <h4 data-en="Proven Methodology" data-tr="Kanıtlanmış Metodoloji">Proven Methodology</h4>
-          <p data-en="OWASP, PTES, CIS Benchmark and MITRE ATT&CK — internationally standardized frameworks across all engagements." data-tr="OWASP, PTES, CIS Benchmark ve MITRE ATT&CK — tüm görevlerde uluslararası standartlar.">OWASP, PTES, CIS Benchmark and MITRE ATT&CK — internationally standardized frameworks across all engagements.</p>
+          <h4 data-en="Standards-Aligned Methodology" data-tr="Standartlara Uyumlu Metodoloji">Standards-Aligned Methodology</h4>
+          <p data-en="OWASP, PTES, CIS Benchmark and MITRE ATT&CK — internationally standardized frameworks across all engagements." data-tr="OWASP, PTES, CIS Benchmark ve MITRE ATT&CK — tüm görevlerde uluslararası standartlar.">Every engagement is scoped and executed against OWASP WSTG, PTES, CIS Benchmark, and MITRE ATT&CK — ensuring reproducible, court-defensible findings across all disciplines.</p>
         </div></div>
         <div class="why-item"><div class="why-icon">🔗</div><div>
-          <h4 data-en="Integrated Ecosystem" data-tr="Entegre Ekosistem">Integrated Ecosystem</h4>
-          <p data-en="Honeypot IOCs auto-feed CTIA. Pentest findings become a Hardening roadmap. GoldenX automates it all." data-tr="Honeypot IOC'ları otomatik CTIA'ya beslenir. Pentest bulguları sağlamlaştırma planına dönüşür. GoldenX hepsini otomatize eder.">Honeypot IOCs auto-feed CTIA. Pentest findings become a Hardening roadmap. GoldenX automates it all.</p>
+          <h4 data-en="Closed-Loop Security Ecosystem" data-tr="Kapalı Döngü Güvenlik Ekosistemi">Closed-Loop Security Ecosystem</h4>
+          <p data-en="Honeypot IOCs auto-feed CTIA. Pentest findings become a Hardening roadmap. GoldenX automates it all." data-tr="Honeypot IOC'ları otomatik CTIA'ya beslenir. Pentest bulguları sağlamlaştırma planına dönüşür. GoldenX hepsini otomatize eder.">Honeypot telemetry auto-populates CTIA threat feeds. Cloud misconfigurations trigger XDR containment playbooks. GoldenX orchestrates continuous validation — eliminating gaps between assessment cycles.</p>
         </div></div>
         <div class="why-item"><div class="why-icon">📊</div><div>
-          <h4 data-en="Transparent & Measurable" data-tr="Şeffaf & Ölçülebilir">Transparent & Measurable</h4>
-          <p data-en="CVSS v3.1-scored reports, monthly SLA tracking and attack surface reduction metrics at every step." data-tr="CVSS v3.1 skorlu raporlar, aylık SLA takibi ve her adımda saldırı yüzeyi azalma metrikleri.">CVSS v3.1-scored reports, monthly SLA tracking and attack surface reduction metrics at every step.</p>
+          <h4 data-en="Evidence-Based Reporting" data-tr="Kanıt Tabanlı Raporlama">Evidence-Based Reporting</h4>
+          <p data-en="CVSS v3.1-scored reports, monthly SLA tracking and attack surface reduction metrics at every step." data-tr="CVSS v3.1 skorlu raporlar, aylık SLA takibi ve her adımda saldırı yüzeyi azalma metrikleri.">All findings delivered with CVSS v3.1 severity scoring, reproducible proof-of-concept documentation, and prioritized remediation roadmaps. Quantified attack surface reduction metrics at every milestone.</p>
         </div></div>
         <div class="why-item"><div class="why-icon">⚡</div><div>
-          <h4 data-en="7/24 Monitoring & Instant Alerts" data-tr="7/24 İzleme & Anlık Alarm">7/24 Monitoring & Instant Alerts</h4>
-          <p data-en="Any anomaly triggers instant SMS, email, Slack and Teams notifications. Zero downtime tolerance." data-tr="Her anomali SMS, e-posta, Slack ve Teams üzerinden anlık bildirim tetikler. Sıfır kesinti toleransı.">Any anomaly triggers instant SMS, email, Slack and Teams notifications. Zero downtime tolerance.</p>
+          <h4 data-en="Continuous Monitoring &amp; Sub-Minute Alerting" data-tr="Sürekli İzleme &amp; Dakika Altı Uyarı">Continuous Monitoring &amp; Sub-Minute Alerting</h4>
+          <p data-en="Any anomaly triggers instant SMS, email, Slack and Teams notifications. Zero downtime tolerance." data-tr="Her anomali SMS, e-posta, Slack ve Teams üzerinden anlık bildirim tetikler. Sıfır kesinti toleransı.">Anomaly detection triggers immediate multi-channel notifications via SMS, email, Slack, and Teams. SLA-backed response commitments with zero tolerance for unacknowledged critical alerts.</p>
         </div></div>
       </div>
     </div>
@@ -944,9 +1131,9 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
 <section id="contact">
   <div class="contact-grid">
     <div class="reveal">
-      <div class="section-tag" data-en="Get in Touch" data-tr="İletişim">Get in Touch</div>
-      <h2 class="section-title" data-en="Let's Discuss Your Security" data-tr="Güvenliğinizi Konuşalım">Let's Discuss Your Security</h2>
-      <p style="font-size:0.95rem;line-height:1.7;color:var(--dim);margin-bottom:36px;" data-en="Fill out the form or reach out directly. Free initial consultation for your organization." data-tr="Formu doldurun ya da doğrudan ulaşın. Organizasyonunuz için ücretsiz ilk danışmanlık.">Fill out the form or reach out directly. Free initial consultation for your organization.</p>
+      <div class="section-tag" data-en="Initiate Contact" data-tr="İletişimi Başlatın">Initiate Contact</div>
+      <h2 class="section-title" data-en="Let's Assess Your Attack Surface" data-tr="Saldırı Yüzeyinizi Değerlendirelim">Let's Assess Your Attack Surface</h2>
+      <p style="font-size:0.95rem;line-height:1.7;color:var(--dim);margin-bottom:36px;" data-en="Fill out the form or reach out directly. Free initial consultation for your organization." data-tr="Formu doldurun ya da doğrudan ulaşın. Organizasyonunuz için ücretsiz ilk danışmanlık.">Describe your environment and objectives. Our team will scope an engagement targeting your specific threat model — no obligation, no generic proposals.</p>
       <div class="contact-detail"><div class="contact-icon">📧</div><a href="mailto:info@goldenage-consultancy.com">info@goldenage-consultancy.com</a></div>
       <div class="contact-detail"><div class="contact-icon">📞</div><a href="tel:+905063416511">+90 506 341 65 11</a></div>
       <div class="contact-detail"><div class="contact-icon">🌐</div><a href="https://goldenage-consultancy.com">goldenage-consultancy.com</a></div>
@@ -1018,6 +1205,21 @@ function skipCover(){
   },30);
 })();
 
+/* ─── MOBILE NAV ─── */
+function toggleMobNav(){
+  const n=document.getElementById('mobNav');
+  const b=document.getElementById('hamburger');
+  const open=n.classList.toggle('open');
+  b.classList.toggle('open');
+  document.body.style.overflow=open?'hidden':'';
+}
+function closeMobNav(){
+  document.getElementById('mobNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMobNav();});
+
 /* ─── CUSTOM CURSOR ─── */
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursor-ring');
@@ -1033,7 +1235,7 @@ function animRing(){
   requestAnimationFrame(animRing);
 }
 animRing();
-document.querySelectorAll('a,button,.pkg-cta,.svc-card,.pkg-card,.gx-feat,.why-item').forEach(el=>{
+document.querySelectorAll('a,button,.pkg-cta,.svc-card,.pkg-card,.gx-feat,.why-item,.mob-nav a').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cursor.classList.add('hovering');ring.classList.add('hovering');});
   el.addEventListener('mouseleave',()=>{cursor.classList.remove('hovering');ring.classList.remove('hovering');});
 });
