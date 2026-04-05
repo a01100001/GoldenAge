@@ -1134,21 +1134,26 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
       <div class="section-tag" data-en="Initiate Contact" data-tr="İletişimi Başlatın">Initiate Contact</div>
       <h2 class="section-title" data-en="Let's Assess Your Attack Surface" data-tr="Saldırı Yüzeyinizi Değerlendirelim">Let's Assess Your Attack Surface</h2>
       <p style="font-size:0.95rem;line-height:1.7;color:var(--dim);margin-bottom:36px;" data-en="Fill out the form or reach out directly. Free initial consultation for your organization." data-tr="Formu doldurun ya da doğrudan ulaşın. Organizasyonunuz için ücretsiz ilk danışmanlık.">Describe your environment and objectives. Our team will scope an engagement targeting your specific threat model — no obligation, no generic proposals.</p>
-      <div class="contact-detail"><div class="contact-icon">📧</div><a href="mailto:info@goldenage-consultancy.com">info@goldenage-consultancy.com</a></div>
+      <div class="contact-detail"><div class="contact-icon">📧</div><a href="/cdn-cgi/l/email-protection#91f8fff7fed1f6fefdf5f4fff0f6f4bcf2feffe2e4fde5f0fff2e8bff2fefc"><span class="__cf_email__" data-cfemail="e68f888089a681898a828388878183cb85898895938a928788859fc885898b">[email&#160;protected]</span></a></div>
       <div class="contact-detail"><div class="contact-icon">📞</div><a href="tel:+905063416511">+90 506 341 65 11</a></div>
       <div class="contact-detail"><div class="contact-icon">🌐</div><a href="https://goldenage-consultancy.com">goldenage-consultancy.com</a></div>
     </div>
     <div class="reveal">
       <div class="contact-form">
         <div class="form-title" data-en="// Free Consultation Request" data-tr="// Ücretsiz Danışmanlık Talebi">// Free Consultation Request</div>
+        <!-- Web3Forms hidden fields -->
+        <input type="hidden" name="access_key" value="5b01210b-c384-48e6-bea7-dfc733fcdd16">
+        <input type="hidden" name="subject" value="New Consultation Request — GoldenAge Website">
+        <input type="hidden" name="from_name" value="GoldenAge Website">
+        <input type="hidden" name="redirect" value="false">
         <div class="form-row">
-          <div class="form-group"><label data-en="Full Name" data-tr="Ad Soyad">Full Name</label><input type="text" data-placeholder-en="Your name" data-placeholder-tr="Adınız" placeholder="Your name"></div>
-          <div class="form-group"><label data-en="Company" data-tr="Şirket">Company</label><input type="text" data-placeholder-en="Company name" data-placeholder-tr="Şirket adı" placeholder="Company name"></div>
+          <div class="form-group"><label data-en="Full Name" data-tr="Ad Soyad">Full Name</label><input type="text" name="name" id="f-name" data-placeholder-en="Your name" data-placeholder-tr="Adınız" placeholder="Your name"></div>
+          <div class="form-group"><label data-en="Company" data-tr="Şirket">Company</label><input type="text" name="company" id="f-company" data-placeholder-en="Company name" data-placeholder-tr="Şirket adı" placeholder="Company name"></div>
         </div>
-        <div class="form-group"><label data-en="Email" data-tr="E-posta">Email</label><input type="email" placeholder="example@company.com"></div>
+        <div class="form-group"><label data-en="Email" data-tr="E-posta">Email</label><input type="email" name="email" id="f-email" placeholder="example@company.com"></div>
         <div class="form-group">
           <label data-en="Service of Interest" data-tr="İlgilenilen Hizmet">Service of Interest</label>
-          <select>
+          <select name="service" id="f-service">
             <option data-en="Select..." data-tr="Seçiniz...">Select...</option>
             <option data-en="GoldenX — Automated Pentest Framework" data-tr="GoldenX — Otomatik Pentest Çerçevesi">GoldenX — Automated Pentest Framework</option>
             <option data-en="Vulnerability Assessment & Pentest" data-tr="Zafiyet Tespiti & Sızma Testi">Vulnerability Assessment & Pentest</option>
@@ -1165,7 +1170,7 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
             <option data-en="Awareness Package" data-tr="Awareness Paketi">Awareness Package</option>
           </select>
         </div>
-        <div class="form-group"><label data-en="Message" data-tr="Mesaj">Message</label><textarea data-placeholder-en="Tell us about your organization and security needs..." data-placeholder-tr="Organizasyonunuz ve güvenlik ihtiyaçlarınız hakkında kısaca bilgi verin..." placeholder="Tell us about your organization and security needs..."></textarea></div>
+        <div class="form-group"><label data-en="Message" data-tr="Mesaj">Message</label><textarea name="message" id="f-message" data-placeholder-en="Tell us about your organization and security needs..." data-placeholder-tr="Organizasyonunuz ve güvenlik ihtiyaçlarınız hakkında kısaca bilgi verin..." placeholder="Tell us about your organization and security needs..."></textarea></div>
         <button class="form-submit" onclick="submitForm()" data-en="Send Request →" data-tr="Talebi Gönder →">Send Request →</button>
       </div>
     </div>
@@ -1183,7 +1188,7 @@ footer{background:var(--dark);border-top:1px solid rgba(0,245,255,0.08);padding:
   </ul>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─── COVER ─── */
 let coverDone=false;
 function skipCover(){
@@ -1355,15 +1360,69 @@ const metricObs=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.why-visual').forEach(el=>metricObs.observe(el));
 
 /* ─── FORM ─── */
-function submitForm(){
+async function submitForm(){
   const btn=document.querySelector('.form-submit');
-  const msg=currentLang==='tr'?'Teşekkürler! En kısa sürede iletişime geçeceğiz.':'Thank you! We will be in touch shortly.';
-  btn.textContent=currentLang==='tr'?'✓ Gönderildi':'✓ Sent';
-  btn.style.background='linear-gradient(135deg,#2ECC71,#27AE60)';
-  setTimeout(()=>{
-    btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
-    btn.style.background='';
-  },3000);
+  const name=document.getElementById('f-name').value.trim();
+  const company=document.getElementById('f-company').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const service=document.getElementById('f-service').value;
+  const message=document.getElementById('f-message').value.trim();
+
+  if(!name||!email||!message){
+    const errMsg=currentLang==='tr'?'Lütfen zorunlu alanları doldurun (Ad, E-posta, Mesaj).':'Please fill in the required fields (Name, Email, Message).';
+    btn.textContent=errMsg;
+    btn.style.background='rgba(255,0,80,0.4)';
+    setTimeout(()=>{
+      btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
+      btn.style.background='';
+    },3000);
+    return;
+  }
+
+  btn.textContent=currentLang==='tr'?'Gönderiliyor...':'Sending...';
+  btn.disabled=true;
+
+  const formData={
+    access_key: document.querySelector('input[name="access_key"]').value,
+    subject: 'New Consultation Request — GoldenAge Website',
+    from_name: 'GoldenAge Website',
+    name: name,
+    email: email,
+    company: company||'—',
+    service: service||'—',
+    message: message,
+    botcheck: ''
+  };
+
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(formData)
+    });
+    const data=await res.json();
+    if(data.success){
+      btn.textContent=currentLang==='tr'?'✓ Gönderildi! En kısa sürede döneceğiz.':'✓ Sent! We will be in touch shortly.';
+      btn.style.background='linear-gradient(135deg,#1a7a3a,#0d4a22)';
+      btn.style.color='#a0ffb0';
+      ['f-name','f-company','f-email','f-message'].forEach(id=>document.getElementById(id).value='');
+      document.getElementById('f-service').selectedIndex=0;
+      setTimeout(()=>{
+        btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
+        btn.style.background='';btn.style.color='';btn.disabled=false;
+      },5000);
+    } else {
+      throw new Error(data.message||'API error');
+    }
+  } catch(err){
+    console.error('Form error:',err);
+    btn.textContent=currentLang==='tr'?'✗ Hata oluştu. Lütfen tekrar deneyin.':'✗ Error. Please try again.';
+    btn.style.background='rgba(255,0,80,0.4)';btn.style.color='#fff';
+    setTimeout(()=>{
+      btn.textContent=currentLang==='tr'?'Talebi Gönder →':'Send Request →';
+      btn.style.background='';btn.style.color='';btn.disabled=false;
+    },4000);
+  }
 }
 </script>
 </body>
